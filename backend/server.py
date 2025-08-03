@@ -99,7 +99,8 @@ def get_openai_client():
         raise HTTPException(status_code=400, detail="OpenAI API key not configured")
     
     api_key = decrypt_key(settings['openai_api_key'])
-    return openai.OpenAI(api_key=api_key)
+    client = openai.OpenAI(api_key=api_key)
+    return client
 
 def select_random_quote():
     """Select a random quote avoiding 14-day repeats"""
