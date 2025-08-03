@@ -32,18 +32,19 @@ class EmberScriptoriumTester:
         print()
 
     def test_root_endpoint(self):
-        """Test the root endpoint"""
+        """Test the root endpoint (frontend serves HTML, so we test API connectivity)"""
         try:
-            response = requests.get(f"{self.base_url}/", timeout=10)
+            # Test API connectivity instead of root HTML
+            response = requests.get(f"{self.base_url}/api/quotes", timeout=10)
             success = response.status_code == 200
-            details = f"Status: {response.status_code}"
+            details = f"API Status: {response.status_code}"
             if success:
                 data = response.json()
-                details += f", Message: {data.get('message', 'No message')}"
-            self.log_test("Root Endpoint", success, details)
+                details += f", API responding correctly"
+            self.log_test("API Connectivity", success, details)
             return success
         except Exception as e:
-            self.log_test("Root Endpoint", False, str(e))
+            self.log_test("API Connectivity", False, str(e))
             return False
 
     def load_sample_quotes(self):
