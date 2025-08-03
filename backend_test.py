@@ -281,7 +281,7 @@ class EmberScriptoriumTester:
         
         # Test basic connectivity
         if not self.test_root_endpoint():
-            print("❌ Root endpoint failed - stopping tests")
+            print("❌ API connectivity failed - stopping tests")
             return False
             
         # Load sample data
